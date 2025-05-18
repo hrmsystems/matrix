@@ -4,21 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Escalation Matrix - Quantum</title>
+
+  <!-- Favicon (using the PNG image from GitHub) -->
+  <link rel="icon" href="https://github.com/hrmsystems/matrix/blob/main/LOGO%20PNG3.png?raw=true" type="image/png" />
+
+  <!-- Import Poetsen One Regular (400) Font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poetsen+One:wght@400&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Inline fallback styling (if external CSS isn't used) */
-
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial, sans-serif; /* Default font for body */
       margin: 0;
-      padding-top: 130px; /* Prevents overlap with fixed header */
-      padding-bottom: 60px; /* Prevents overlap with fixed footer */
+      padding-top: 100px; /* Reduced the top padding */
+      padding-bottom: 60px; /* Ensures space for the fixed footer */
       background-color: #f4f4f9;
       overflow-x: hidden;
     }
 
+    /* Apply Poetsen One Regular (400) font to the company name */
+    header h1 {
+      font-family: 'Poetsen One', sans-serif;
+      font-weight: 400; /* Regular weight */
+      margin: 0;
+      font-size: 24px;
+    }
+
     header {
-      background-color: #003366;
+      background-color: #FF0000;
       color: white;
       position: fixed;
       top: 0;
@@ -26,11 +39,6 @@
       padding: 20px 0;
       text-align: center;
       z-index: 1000;
-    }
-
-    .header-content h1 {
-      margin: 0;
-      font-size: 24px;
     }
 
     .header-content h2 {
@@ -42,18 +50,20 @@
       padding: 20px;
       width: 100%;
       box-sizing: border-box;
+      margin-top: 0; /* No extra margin at the top */
     }
 
     #table-container {
       overflow-y: auto;
-      max-height: calc(100vh - 200px); /* Adjust for header and footer */
-      margin-top: 20px;
+      max-height: calc(100vh - 160px); /* Adjusted for header + footer */
+      margin-top: 0; /* No additional margin between header and table */
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 30px;
+      margin-top: 0; /* Remove extra space between the table and header */
+      font-size: 14px; /* Reduced font size */
     }
 
     table, th, td {
@@ -70,7 +80,7 @@
     }
 
     thead {
-      background-color: #005acf;
+      background-color: #000000;
       color: white;
       position: sticky;
       top: 0;
@@ -82,7 +92,7 @@
     }
 
     footer {
-      background-color: #003366;
+      background-color: #FF0000;
       color: white;
       text-align: center;
       padding: 10px 0;
@@ -97,7 +107,7 @@
   <!-- Header -->
   <header>
     <div class="header-content">
-      <h1>QUANTUM HRM SYSTEMS PVT LIMITED</h1>
+      <h1>QUANTUM HRM SYSTEMS PVT LIMITED</h1> <!-- Company name with Poetsen One Regular font -->
       <h2>Escalation Matrix</h2>
     </div>
   </header>
@@ -105,7 +115,7 @@
   <!-- Main Content -->
   <div class="container">
     <div id="table-container">
-      <!-- Table will be loaded here -->
+      <!-- Table will be inserted here -->
     </div>
   </div>
 
@@ -130,7 +140,7 @@
         Papa.parse(csvData, {
           complete: function(results) {
             const data = results.data;
-            console.log(data); // Debug
+            console.log(data); // Debugging the data
             createTable(data);
           },
           error: function(error) {
@@ -157,8 +167,7 @@
 
       for (let i = 1; i < data.length; i++) {
         const row = data[i];
-        // Skip empty rows
-        if (row.every(cell => cell.trim() === '')) continue;
+        if (row.every(cell => cell.trim() === '')) continue; // Skip empty rows
         tableHtml += '<tr>';
         for (let cell of row) {
           tableHtml += `<td>${cell}</td>`;
