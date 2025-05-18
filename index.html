@@ -5,27 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Escalation Matrix - Quantum</title>
 
-  <!-- Favicon (using the PNG image from GitHub) -->
+  <!-- Favicon -->
   <link rel="icon" href="https://github.com/hrmsystems/matrix/blob/main/LOGO%20PNG3.png?raw=true" type="image/png" />
 
-  <!-- Import Poetsen One Regular (400) Font from Google Fonts -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poetsen+One:wght@400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
   <style>
     body {
-      font-family: Arial, sans-serif; /* Default font for body */
+      font-family: Arial, sans-serif;
       margin: 0;
-      padding-top: 100px; /* Reduced the top padding */
-      padding-bottom: 60px; /* Ensures space for the fixed footer */
+      padding-top: 100px;
+      padding-bottom: 60px;
       background-color: #f4f4f9;
       overflow-x: hidden;
     }
 
-    /* Apply Poetsen One Regular (400) font to the company name */
     header h1 {
       font-family: 'Poetsen One', sans-serif;
-      font-weight: 400; /* Regular weight */
+      font-weight: 400;
       margin: 0;
       font-size: 24px;
     }
@@ -50,20 +49,17 @@
       padding: 20px;
       width: 100%;
       box-sizing: border-box;
-      margin-top: 0; /* No extra margin at the top */
     }
 
     #table-container {
       overflow-y: auto;
-      max-height: calc(100vh - 160px); /* Adjusted for header + footer */
-      margin-top: 0; /* No additional margin between header and table */
+      max-height: calc(100vh - 160px);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 0; /* Remove extra space between the table and header */
-      font-size: 14px; /* Reduced font size */
+      font-size: 14px;
     }
 
     table, th, td {
@@ -107,7 +103,7 @@
   <!-- Header -->
   <header>
     <div class="header-content">
-      <h1>QUANTUM HRM SYSTEMS PVT LIMITED</h1> <!-- Company name with Poetsen One Regular font -->
+      <h1>QUANTUM HRM SYSTEMS PVT LIMITED</h1>
       <h2>Escalation Matrix</h2>
     </div>
   </header>
@@ -124,10 +120,10 @@
     <p>&copy; 2025 All rights reserved. QUANTUM HRM SYSTEMS PVT LIMITED</p>
   </footer>
 
-  <!-- JavaScript to fetch and display CSV -->
+  <!-- JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
   <script>
-    const csvUrl = "https://raw.githubusercontent.com/hrmsystemsngl/matrix/main/Escalation%20Matrix%20-%2018%20may.csv";
+    const csvUrl = "https://raw.githubusercontent.com/hrmsystems/matrix/main/Escalation%20Matrix%20-%2018%20may.csv";
 
     fetch(csvUrl)
       .then(response => {
@@ -140,7 +136,6 @@
         Papa.parse(csvData, {
           complete: function(results) {
             const data = results.data;
-            console.log(data); // Debugging the data
             createTable(data);
           },
           error: function(error) {
@@ -167,7 +162,7 @@
 
       for (let i = 1; i < data.length; i++) {
         const row = data[i];
-        if (row.every(cell => cell.trim() === '')) continue; // Skip empty rows
+        if (row.every(cell => cell.trim() === '')) continue;
         tableHtml += '<tr>';
         for (let cell of row) {
           tableHtml += `<td>${cell}</td>`;
